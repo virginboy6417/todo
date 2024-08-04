@@ -59,7 +59,7 @@ let cart = [];
                             <button class="btn btn-danger" onclick="deleteItem(${i})">Delete</button>
                             <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-warning" onclick="editItem(${i})">Edit</button>
                         </td>
-                    </tr>
+                    </tr> 
                 `;
             }
         }
