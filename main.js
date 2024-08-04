@@ -57,7 +57,7 @@ let cart = [];
                         <td>${cart[i].country}</td>
                         <td>
                             <button class="btn btn-danger" onclick="deleteItem(${i})">Delete</button>
-                            <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-warning" onclick="editItem(${i})">Edit</button>
+                            <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-dark" onclick="editItem(${i})">Edit</button>
                         </td>
                     </tr>
                 `;
