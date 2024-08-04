@@ -16,7 +16,12 @@ let cart = [];
                     country
                 };
 
+                
                 cart.push(athleteObj);
+                localStorage.setItem('athletes', JSON.stringify(cart) )
+
+                results = JSON.parse(localStorage.getItem("athletes"))
+                
                 displayResult();
                 clearInputs();
             }
@@ -31,6 +36,7 @@ let cart = [];
 
             // Remove the old item from the list
             cart.splice(index, 1 );
+            localStorage.setItem('athletes', JSON.stringify(cart));
             displayResult();
         }
 
@@ -47,25 +53,31 @@ let cart = [];
                 </tr>
             `;
 
-            for (let i = 0; i < cart.length; i++) {
+            cart.map((item, i) => {
                 show.innerHTML += `
-                    <tr>
-                        <td>${i + 1}</td>
-                        <td>${cart[i].athlete}</td>
-                        <td>${cart[i].gender}</td>
-                        <td>${cart[i].sport}</td>
-                        <td>${cart[i].country}</td>
-                        <td>
-                            <button class="btn btn-danger" onclick="deleteItem(${i})">Delete</button>
-                            <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-dark" onclick="editItem(${i})">Edit</button>
-                        </td>
-                    </tr> 
+                <tr>
+                    <td>${i + 1}</td>
+                    <td>${item.athlete}</td>
+                    <td>${item.gender}</td>
+                    <td>${item.sport}</td>
+                    <td>${item.country}</td>
+                    <td>
+                        <button class="btn btn-danger" onclick="deleteItem(${i})">Delete</button>
+                        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-dark" onclick="editItem(${i})">Edit</button>
+                    </td>
+                </tr>
                 `;
-            }
+            });
+
+            
+
+
+           
         }
 
         const deleteItem = (index) => {
             cart.splice(index, 1);
+            localStorage.setItem('athletes', JSON.stringify(cart));
             displayResult();
         }
 
@@ -78,3 +90,20 @@ let cart = [];
 
         // Initialize display
         displayResult();
+
+
+
+
+        // Initialize display
+document.addEventListener("DOMContentLoaded", initialize )
+
+
+function initialize() {
+    const storedData = localStorage.getItem('athletes');
+    if (storedData) {
+        cart = JSON.parse(storedData);
+    }
+    displayResult();
+}
+
+// initialize();
